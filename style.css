@@ -14,8 +14,9 @@ body {
 /* --- A FICHA PRINCIPAL --- */
 .folha-ficha {
     background-color: #fff;
-    width: 740px; /* Reduzimos de 800 para 740 para caber com folga no A4 */
-    padding: 25px 35px; /* Ajustamos o espaço interno para ficar elegante */
+    width: 740px; 
+    /* Reduzimos as margens internas para as colunas não vazarem nas laterais */
+    padding: 20px 15px; 
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin: 0 auto; 
@@ -59,7 +60,8 @@ h3 {
 .grid-3-colunas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px; 
+    /* Reduzimos o buraco entre as colunas para a 3ª coluna caber com folga */
+    gap: 10px; 
 }
 
 .grid-2-colunas {
@@ -81,6 +83,14 @@ h3 {
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
+}
+
+/* Novo: Alinhamento perfeito para o bloco central (Darma, Força de Vontade, etc.) */
+.bloco-traco-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 /* --- CAMPOS DE TEXTO (INPUTS) --- */
@@ -113,6 +123,11 @@ input[type="text"] {
 .dots, .squares {
     display: flex;
     gap: 2px; 
+}
+
+/* Novo: Espaço para os quadrados não atropelarem as bolinhas */
+.squares {
+    margin-top: 4px; 
 }
 
 .dot {

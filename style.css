@@ -8,18 +8,17 @@ body {
     font-family: "Georgia", "Times New Roman", serif;
     color: #000;
     margin: 0;
-    padding: 20px 0; /* Espaço apenas em cima e embaixo agora */
-    /* Removemos o display flex daqui para consertar o bug do PDF */
+    padding: 20px 0; 
 }
 
 /* --- A FICHA PRINCIPAL --- */
 .folha-ficha {
     background-color: #fff;
-    width: 800px; 
-    padding: 20px; 
+    width: 740px; /* Reduzimos de 800 para 740 para caber com folga no A4 */
+    padding: 25px 35px; /* Ajustamos o espaço interno para ficar elegante */
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    margin: 0 auto; /* Isso mantém a ficha no meio da tela sem confundir o PDF */
+    margin: 0 auto; 
 }
 
 hr {
@@ -165,7 +164,7 @@ input[type="text"] {
 .controles {
     margin-top: 20px;
     margin-bottom: 30px;
-    text-align: center; /* Centraliza o botão */
+    text-align: center;
 }
 
 #btn-gerar-pdf {

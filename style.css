@@ -9,6 +9,10 @@ body {
     color: #000;
     margin: 0;
     padding: 20px 0; 
+    /* NOVA SOLUÇÃO: Centralizamos o fundo da página inteira usando Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* --- A FICHA PRINCIPAL --- */
@@ -19,8 +23,7 @@ body {
     padding: 15px 25px; 
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    margin: 0 auto; 
-    /* O overflow: hidden fica de fora para permitir o funcionamento da câmera */
+    /* REMOVIDO: margin: 0 auto; (Era isso que causava os cortes no PDF!) */
 }
 
 hr {
@@ -200,7 +203,6 @@ input[type="text"] {
     margin-top: 15px; 
 }
 
-/* Garante que a linha de quebra invisível do HTML funcione perfeitamente */
 .html2pdf__page-break {
     height: 0;
     margin: 0;

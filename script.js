@@ -59,25 +59,23 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (CORREÇÕES APLICADAS) ---
+    // --- 4. GERAÇÃO DO PDF ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
         const opcoes = {
-            margin:       [5, 5, 5, 5], // Margem de segurança
+            margin:       [5, 5, 5, 5], 
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 1 },
             html2canvas:  { 
                 scale: 2, 
                 useCORS: true,
-                // Engessamos as larguras para a biblioteca focar apenas na área de 740px
-                width: 740,
-                windowWidth: 740 
+                scrollX: 0,
+                scrollY: 0
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } // Impede a quebra em 2 páginas
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
         
         html2pdf().set(opcoes).from(elementoFicha).save();

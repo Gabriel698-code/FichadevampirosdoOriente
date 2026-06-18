@@ -65,23 +65,22 @@ document.addEventListener("DOMContentLoaded", function() {
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // O TRUQUE NINJA: Remove a centralização forçando a ficha pro canto esquerdo
+        // Mantemos o truque ninja de encostar a ficha na esquerda temporariamente
         elementoFicha.style.margin = '0';
         
         const opcoes = {
-            margin:       10, 
+            margin:       [10, 10, 10, 10], // Margem travada em 10mm nos 4 cantos
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
                 scrollX: 0, 
                 scrollY: 0,
-                windowWidth: 1000 // Dá espaço de sobra para a câmera não cortar
+                windowWidth: 1000 
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         }; 
         
-        // Usa o comando .then() para devolver a ficha para o centro APÓS gerar o PDF
         html2pdf().set(opcoes).from(elementoFicha).save().then(function() {
             elementoFicha.style.margin = '0 auto';
         });

@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (TÉCNICA DO TELETRANSPORTE) ---
+    // --- 4. GERAÇÃO DO PDF (COM TELETRANSPORTE E QUEBRA DE PÁGINA) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const topOriginal = elementoFicha.style.top;
         const leftOriginal = elementoFicha.style.left;
 
-        // 2. "Teletransporta" a ficha para o ponto 0,0 (canto da tela)
+        // 2. "Teletransporta" a ficha temporariamente para o canto (Evita a tela branca)
         elementoFicha.style.margin = '0';
         elementoFicha.style.position = 'absolute';
         elementoFicha.style.top = '0';
@@ -86,12 +86,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 useCORS: true,
                 scrollX: 0,
                 scrollY: 0,
-                windowWidth: 750 // 740px da ficha + 10px de margem de erro
+                windowWidth: 750 // Trava o enquadramento na medida certa
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            // Ativa o leitor daquela <div> mágica que você colocou no HTML
+            pagebreak:    { mode: ['css', 'legacy'] } 
         };
         
-        // 3. Tira a foto e devolve a ficha para o meio da tela
+        // 3. Gera o PDF e devolve a ficha para o meio da tela
         html2pdf().set(opcoes).from(elementoFicha).save().then(function() {
             elementoFicha.style.margin = margemOriginal;
             elementoFicha.style.position = posicaoOriginal;

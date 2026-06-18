@@ -59,25 +59,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (VERSÃO LIMPA E ESTÁVEL) ---
+    // --- 4. GERAÇÃO DO PDF (ESTÁVEL E COMPATÍVEL COM O NOVO CSS) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // Retiramos todos os "truques" e deixamos só o básico que sempre funciona
         const opcoes = {
-            margin:       5, 
+            margin:       [5, 5, 5, 5], // Margem de segurança de 5mm nos 4 cantos
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
-                scrollY: 0 // Mantém a câmera no lugar certo
+                useCORS: true,
+                scrollY: 0 // Evita que a câmera desloque caso a página tenha rolagem
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
         
-        // Geração limpa e direta
+        // Executa a renderização limpa
         html2pdf().set(opcoes).from(elementoFicha).save();
     });
 

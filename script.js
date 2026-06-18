@@ -59,43 +59,40 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (ATUALIZADA COM A SUA SUGESTÃO) ---
+    // --- 4. GERAÇÃO DO PDF (CAPTURA EXATA DA TELA) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
-    
-    botaoGerarPdf.addEventListener('click', function() {
-        const elementoFicha = document.getElementById('ficha-personagem');
-        
-        // Aplicação das configurações sugeridas
-        const opcoes = {
-            margin: 5,
+
+    // Usamos 'async' para lidar com o processo de criação do PDF de forma mais fluida
+    botaoGerarPdf.addEventListener('click', async function() {
+
+        const ficha = document.getElementById('ficha-personagem');
+
+        // Novas opções que usam a altura e largura reais da ficha
+        const opt = {
+            margin: 0, // Sem margens artificiais, o CSS já cuida do espaço interno
             filename: 'ficha_vampiro_oriente.pdf',
             image: {
                 type: 'jpeg',
-                quality: 1
+                quality: 1 // Qualidade máxima de imagem
             },
             html2canvas: {
-                scale: 2,
+                scale: 2, // Mantém a alta resolução
                 useCORS: true,
-                scrollX: 0,
-                scrollY: 0,
-                // O segredo para não cortar as laterais: lê a largura exata da div
-                windowWidth: elementoFicha.scrollWidth
+                logging: false, // Esconde mensagens desnecessárias no console (F12)
+                letterRendering: true // Melhora o desenho das letras da fonte
             },
             jsPDF: {
-                unit: 'mm',
-                format: 'a4',
+                unit: 'px', // Usa "pixels" em vez de "milímetros"
+                // O grande truque: o PDF terá a largura e altura exatas do elemento HTML
+                format: [ficha.scrollWidth, ficha.scrollHeight], 
                 orientation: 'portrait'
-            },
-            pagebreak: {
-                // Impede que a biblioteca quebre a ficha em múltiplas páginas
-                mode: ['avoid-all', 'css', 'legacy']
             }
         };
 
-        // Executa a conversão
+        // Roda a biblioteca com as nossas novas opções infalíveis
         html2pdf()
-            .set(opcoes)
-            .from(elementoFicha)
+            .set(opt)
+            .from(ficha)
             .save();
     });
 

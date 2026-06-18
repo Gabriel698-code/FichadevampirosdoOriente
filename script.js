@@ -59,41 +59,51 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (CAPTURA EXATA DA TELA) ---
+    // --- 4. GERAÇÃO DO PDF (VERSÃO A4 CORRIGIDA E BLINDADA) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
+    
+    botaoGerarPdf.addEventListener('click', function() {
+        const elementoFicha = document.getElementById('ficha-personagem');
+        
+        // 1. SALVA AS CONFIGURAÇÕES ORIGINAIS
+        const margemOriginal = elementoFicha.style.margin;
+        const posicaoOriginal = elementoFicha.style.position;
+        const leftOriginal = elementoFicha.style.left;
+        const topOriginal = elementoFicha.style.top;
 
-    // Usamos 'async' para lidar com o processo de criação do PDF de forma mais fluida
-    botaoGerarPdf.addEventListener('click', async function() {
-
-        const ficha = document.getElementById('ficha-personagem');
-
-        // Novas opções que usam a altura e largura reais da ficha
-        const opt = {
-            margin: 0, // Sem margens artificiais, o CSS já cuida do espaço interno
-            filename: 'ficha_vampiro_oriente.pdf',
-            image: {
-                type: 'jpeg',
-                quality: 1 // Qualidade máxima de imagem
-            },
-            html2canvas: {
-                scale: 2, // Mantém a alta resolução
+        // 2. TRUQUE NINJA: Prende a ficha no canto superior esquerdo (Ponto Zero)
+        elementoFicha.style.margin = '0';
+        elementoFicha.style.position = 'absolute';
+        elementoFicha.style.left = '0';
+        elementoFicha.style.top = '0';
+        
+        // 3. OPÇÕES PARA FORMATO A4
+        const opcoes = {
+            margin:       [5, 5, 5, 5], // 5mm de borda branca nas laterais da folha A4
+            filename:     'ficha_vampiro_oriente_A4.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
                 useCORS: true,
-                logging: false, // Esconde mensagens desnecessárias no console (F12)
-                letterRendering: true // Melhora o desenho das letras da fonte
+                scrollX: 0, 
+                scrollY: 0 
+                // Sem windowWidth, a biblioteca vai ler o tamanho exato da ficha colada no canto
             },
-            jsPDF: {
-                unit: 'px', // Usa "pixels" em vez de "milímetros"
-                // O grande truque: o PDF terá a largura e altura exatas do elemento HTML
-                format: [ficha.scrollWidth, ficha.scrollHeight], 
-                orientation: 'portrait'
-            }
-        };
-
-        // Roda a biblioteca com as nossas novas opções infalíveis
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+        }; 
+        
+        // 4. GERA O PDF E DEVOLVE A FICHA PARA O LUGAR
         html2pdf()
-            .set(opt)
-            .from(ficha)
-            .save();
+            .set(opcoes)
+            .from(elementoFicha)
+            .save()
+            .then(() => {
+                // Quando o download terminar, restaura o visual centralizado original
+                elementoFicha.style.margin = margemOriginal;
+                elementoFicha.style.position = posicaoOriginal;
+                elementoFicha.style.left = leftOriginal;
+                elementoFicha.style.top = topOriginal;
+            });
     });
 
-});
+}); // Fim do documento

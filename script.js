@@ -1,3 +1,4 @@
+// Aguarda todo o HTML da página ser carregado antes de rodar o código
 document.addEventListener("DOMContentLoaded", function() {
 
     // --- 1. LÓGICA DAS BOLINHAS (DOTS) ---
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 windowWidth: 800 // Trava a largura exatamente no tamanho da ficha no CSS
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
-        }; // <-- O ERRO ESTAVA AQUI: havia um "};" extra logo abaixo desta linha
+        }; 
         
         // O comando mágico da biblioteca que faz a conversão e o download
         html2pdf().set(opcoes).from(elementoFicha).save();

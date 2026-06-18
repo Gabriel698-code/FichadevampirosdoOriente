@@ -65,25 +65,22 @@ document.addEventListener("DOMContentLoaded", function() {
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // Mantemos o truque ninja de encostar a ficha na esquerda temporariamente
-        elementoFicha.style.margin = '0';
-        
+        // Removemos qualquer truque de forçar margens para não confundir a câmera
         const opcoes = {
-            margin:       [10, 10, 10, 10], // Margem travada em 10mm nos 4 cantos
+            margin:       [10, 10, 10, 10], // Margem segura nos 4 cantos
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
                 scrollX: 0, 
-                scrollY: 0,
-                windowWidth: 1000 
+                scrollY: 0
+                // APAGAMOS o "windowWidth" que estava causando o corte na esquerda
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         }; 
         
-        html2pdf().set(opcoes).from(elementoFicha).save().then(function() {
-            elementoFicha.style.margin = '0 auto';
-        });
+        // Geração direta sem alterar o estilo da página
+        html2pdf().set(opcoes).from(elementoFicha).save();
     });
 
 });

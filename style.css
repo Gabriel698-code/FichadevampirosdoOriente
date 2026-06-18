@@ -15,7 +15,6 @@ body {
 .folha-ficha {
     background-color: #fff;
     width: 740px; 
-    /* Reduzimos as margens internas para as colunas não vazarem nas laterais */
     padding: 20px 15px; 
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -53,20 +52,21 @@ h3 {
 /* --- SISTEMA DE COLUNAS (GRID) --- */
 .grid-cabecalho {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* TRAVA DE SEGURANÇA: minmax(0, 1fr) impede que os itens quebrem a grade */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
 .grid-3-colunas {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* Reduzimos o buraco entre as colunas para a 3ª coluna caber com folga */
+    /* TRAVA DE SEGURANÇA: Garante 3 colunas de tamanhos rigorosamente iguais */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px; 
 }
 
 .grid-2-colunas {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 30px;
 }
 
@@ -85,12 +85,13 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Novo: Alinhamento perfeito para o bloco central (Darma, Força de Vontade, etc.) */
+/* CORREÇÃO DO ALINHAMENTO (Força de Vontade, Darma, etc.) */
 .bloco-traco-central {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 12px;
+    gap: 6px; /* Isso força um espaço inquebrável entre o título, as bolinhas e os quadrados */
+    margin-bottom: 15px;
 }
 
 /* --- CAMPOS DE TEXTO (INPUTS) --- */
@@ -102,6 +103,8 @@ input[type="text"] {
     font-size: 14px;
     outline: none;
     padding: 1px 3px;
+    /* TRAVA DE SEGURANÇA: Impede que a caixa de texto expanda a coluna e jogue as Virtudes para fora */
+    min-width: 0; 
 }
 
 .campo label {
@@ -117,17 +120,13 @@ input[type="text"] {
 .input-linha {
     flex-grow: 1;
     margin-right: 8px;
+    width: 100%; /* Ajuda o input a respeitar o limite da linha */
 }
 
 /* --- PREPARAÇÃO PARA O JAVASCRIPT (BOLINHAS E QUADRADOS) --- */
 .dots, .squares {
     display: flex;
     gap: 2px; 
-}
-
-/* Novo: Espaço para os quadrados não atropelarem as bolinhas */
-.squares {
-    margin-top: 4px; 
 }
 
 .dot {

@@ -1,48 +1,52 @@
+CSS
 /* --- CONFIGURAÇÕES GERAIS --- */
 * {
-    box-sizing: border-box; /* Garante que as margens não quebrem o layout */
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #f0f0f0; /* Fundo cinza claro atrás da ficha */
-    font-family: "Georgia", "Times New Roman", serif; /* Fonte clássica de RPG */
+    background-color: #f0f0f0;
+    font-family: "Georgia", "Times New Roman", serif;
     color: #000;
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza a ficha na tela */
+    align-items: center;
 }
 
 /* --- A FICHA PRINCIPAL --- */
 .folha-ficha {
-    background-color: #fff; /* Fundo branco como papel */
-    width: 800px; /* Trocamos para uma largura fixa para o PDF não se perder */
-    padding: 30px; /* Diminuímos um pouco para caber tudo na folha A4 */
-    border: 2px solid #000; /* Borda preta ao redor de tudo */
-    box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
-    margin: 0 auto; /* Ajuda a manter centralizado na tela */
+    background-color: #fff;
+    width: 800px; 
+    padding: 20px; /* Reduzimos para caber mais coisa na página */
+    border: 2px solid #000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    margin: 0 auto;
 }
 
-/* Linhas divisórias (hr) */
 hr {
     border: none;
     border-top: 2px solid #000;
-    margin: 20px 0;
+    margin: 15px 0; /* Espaço reduzido */
 }
 
 h2 {
     text-align: center;
-    text-transform: uppercase; /* Deixa tudo em MAIÚSCULAS */
+    text-transform: uppercase;
     letter-spacing: 2px;
     border-bottom: 1px solid #000;
     padding-bottom: 5px;
+    font-size: 20px; /* Fonte levemente menor */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 h3 {
     text-align: center;
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Espaço reduzido */
+    font-size: 16px;
 }
 
 .titulo-centralizado {
@@ -52,88 +56,85 @@ h3 {
 /* --- SISTEMA DE COLUNAS (GRID) --- */
 .grid-cabecalho {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-    gap: 15px; /* Espaço entre elas */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
 .grid-3-colunas {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px; /* Reduzimos o buraco entre as colunas para caber as Virtudes */
 }
 
 .grid-2-colunas {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 /* --- ALINHAMENTO DAS LINHAS (FLEXBOX) --- */
 .linha-status {
     display: flex;
-    justify-content: space-between; /* Texto de um lado, bolinhas do outro */
-    align-items: center; /* Centraliza verticalmente */
-    margin-bottom: 8px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px; /* Linhas mais próximas */
 }
 
 .linha-status-centralizada {
     display: flex;
-    flex-direction: column; /* Coloca o título em cima e as bolinhas embaixo */
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 /* --- CAMPOS DE TEXTO (INPUTS) --- */
 input[type="text"] {
     border: none;
-    border-bottom: 1px solid #000; /* Apenas a linha de baixo */
+    border-bottom: 1px solid #000;
     background-color: transparent;
     font-family: inherit;
     font-size: 14px;
-    outline: none; /* Tira o contorno azul ao clicar */
-    padding: 2px 5px;
+    outline: none;
+    padding: 1px 3px;
 }
 
-/* Ajustes específicos para inputs dentro das linhas */
 .campo label {
     font-weight: bold;
     margin-right: 5px;
+    font-size: 14px;
 }
 
 .campo input {
-    width: calc(100% - 80px); /* Ocupa o espaço restante ao lado da label */
+    width: calc(100% - 80px);
 }
 
 .input-linha {
-    flex-grow: 1; /* Faz o input crescer e empurrar as bolinhas para o canto */
-    margin-right: 10px;
+    flex-grow: 1;
+    margin-right: 8px;
 }
 
 /* --- PREPARAÇÃO PARA O JAVASCRIPT (BOLINHAS E QUADRADOS) --- */
 .dots, .squares {
     display: flex;
-    gap: 3px; /* Espaço entre as bolinhas */
+    gap: 2px; /* Bolinhas mais juntinhas */
 }
 
-/* O CSS da bolinha (ainda não vai aparecer até o JS desenhá-la) */
 .dot {
-    width: 14px;
-    height: 14px;
+    width: 12px; /* Bolinhas menores */
+    height: 12px; /* Bolinhas menores */
     border: 1px solid #000;
-    border-radius: 50%; /* Faz ficar redondo */
-    cursor: pointer; /* Muda o mouse para a mãozinha ao passar por cima */
+    border-radius: 50%;
+    cursor: pointer;
     display: inline-block;
 }
 
-/* A bolinha quando estiver preenchida */
 .dot.filled {
     background-color: #000;
 }
 
-/* O CSS do quadrado */
 .square {
-    width: 14px;
-    height: 14px;
+    width: 12px; /* Quadrados menores */
+    height: 12px; /* Quadrados menores */
     border: 1px solid #000;
     cursor: pointer;
     display: inline-block;
@@ -148,14 +149,15 @@ input[type="text"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     border-bottom: 1px dotted #ccc;
+    font-size: 14px;
 }
 
 .cabecalho-combate, .linha-combate {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .input-arma { width: 50%; }
@@ -164,7 +166,7 @@ input[type="text"] {
 
 /* --- BOTÃO DE GERAR PDF --- */
 .controles {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 

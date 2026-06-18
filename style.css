@@ -17,11 +17,11 @@ body {
 /* --- A FICHA PRINCIPAL --- */
 .folha-ficha {
     background-color: #fff; /* Fundo branco como papel */
-    width: 100%;
-    max-width: 900px; /* Largura máxima para não ficar esticada em telas grandes */
-    padding: 40px;
+    width: 800px; /* Trocamos para uma largura fixa para o PDF não se perder */
+    padding: 30px; /* Diminuímos um pouco para caber tudo na folha A4 */
     border: 2px solid #000; /* Borda preta ao redor de tudo */
     box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
+    margin: 0 auto; /* Ajuda a manter centralizado na tela */
 }
 
 /* Linhas divisórias (hr) */
@@ -178,8 +178,4 @@ input[type="text"] {
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-#btn-gerar-pdf:hover {
-    background-color: #000;
 }

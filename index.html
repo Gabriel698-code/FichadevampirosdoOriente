@@ -1,309 +1,292 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vampiros do Oriente - Ficha</title>
+    <title>Gerador de Ficha - Vampiros do Oriente</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
-<div class="container">
-
-    <header>
-        <h1>Vampiros do Oriente</h1>
-        <p>Ficha de Personagem</p>
-    </header>
-
-    <!-- INFORMAÇÕES -->
-    <section>
-        <h2>Informações</h2>
-
-        <div class="grid-3">
-            <div>
-                <label>Nome</label>
-                <input type="text" id="nome">
+    <div id="ficha-personagem" class="folha-ficha">
+        
+        <header class="secao-cabecalho">
+            <h1 class="titulo-jogo">Vampiros do Oriente</h1>
+            <div class="grid-cabecalho">
+                <div class="campo"><label>Nome:</label><input type="text"></div>
+                <div class="campo"><label>Natureza:</label><input type="text"></div>
+                <div class="campo"><label>Equilíbrio:</label><input type="text"></div>
+                
+                <div class="campo"><label>Jogador:</label><input type="text"></div>
+                <div class="campo"><label>Comportamento:</label><input type="text"></div>
+                <div class="campo"><label>Direção:</label><input type="text"></div>
+                
+                <div class="campo"><label>Crônica:</label><input type="text"></div>
+                <div class="campo"><label>Natureza do P'o:</label><input type="text"></div>
+                <div class="campo"><label>Wu:</label><input type="text"></div>
             </div>
+        </header>
 
-            <div>
-                <label>Jogador</label>
-                <input type="text" id="jogador">
+        <hr>
+
+        <section class="secao-atributos">
+            <h2>Atributos</h2>
+            <div class="grid-3-colunas">
+                <div class="coluna">
+                    <h3>Físicos</h3>
+                    <div class="linha-status"><label>Força</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Destreza</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Vigor</label><div class="dots" data-max="8"></div></div>
+                </div>
+                <div class="coluna">
+                    <h3>Sociais</h3>
+                    <div class="linha-status"><label>Carisma</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Manipulação</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Aparência</label><div class="dots" data-max="8"></div></div>
+                </div>
+                <div class="coluna">
+                    <h3>Mentais</h3>
+                    <div class="linha-status"><label>Percepção</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Inteligência</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Raciocínio</label><div class="dots" data-max="8"></div></div>
+                </div>
             </div>
+        </section>
 
-            <div>
-                <label>Crônica</label>
-                <input type="text" id="cronica">
+        <hr>
+
+        <section class="secao-habilidades">
+            <h2>Habilidades</h2>
+            <div class="grid-3-colunas">
+                <div class="coluna">
+                    <h3>Talentos</h3>
+                    <div class="linha-status"><label>Prontidão</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Esportes</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Briga</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Esquiva</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Empatia</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Expressão</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Intimidação</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Liderança</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Manha</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Labia</label><div class="dots" data-max="8"></div></div>
+                    </div>
+                <div class="coluna">
+                    <h3>Perícias</h3>
+                    <div class="linha-status"><label>Emp. c/ Animais</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Ofícios</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Condução</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Etiqueta</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Armas de Fogo</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Armas Brancas</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Artes Marciais</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Segurança</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Futividade</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Sobrevivencia</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Meditação</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Acrobacia</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Atuação</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Pressagioa</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Totura</label><div class="dots" data-max="8"></div></div>
+                    </div>
+                <div class="coluna">
+                    <h3>Conhecimentos</h3>
+                    <div class="linha-status"><label>Acadêmicos</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Computador</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Finanças</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Investigação</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Direito</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Linguistica</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Medicina</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Ocultismo</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Rituais</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Ciencias</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Técnologia</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Enigmas</label><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><label>Rituais</label><div class="dots" data-max="8"></div></div>
+                    </div>
             </div>
+        </section>
 
-            <div>
-                <label>Natureza</label>
-                <input type="text" id="natureza">
+        <hr>
+
+        <!-- SEÇÃO FINAL: CARACTERÍSTICAS ORIENTAIS, VITALIDADE E COMBATE -->
+        <section class="secao-final">
+            <div class="grid-3-colunas">
+                
+                <!-- Coluna 1: Equilíbrio (Adicionado para preencher o lado esquerdo como na imagem) -->
+                <div class="coluna">
+                    <h3 class="titulo-centralizado">- Equilíbrio -</h3>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                    <div class="linha-status"><input type="text" class="input-linha"></div>
+                </div>
+
+                <!-- Coluna 2: Traços Centrais (Darma, Força de Vontade, Hun, P'o) -->
+                <div class="coluna">
+                    <div class="bloco-traco-central">
+                        <h3 class="titulo-centralizado">- Darma -</h3>
+                        <div class="dots" data-max="10"></div>
+                    </div>
+
+                    <div class="bloco-traco-central">
+                        <h3 class="titulo-centralizado">Força de Vontade</h3>
+                        <div class="dots" data-max="10"></div>
+                        <!-- Nova classe 'squares' para os quadradinhos de pontos temporários -->
+                        <div class="squares" data-max="10"></div> 
+                    </div>
+
+                    <div class="bloco-traco-central">
+                        <h3 class="titulo-centralizado">- Hun -</h3>
+                        <div class="dots" data-max="10"></div>
+                    </div>
+
+                    <div class="bloco-traco-central">
+                        <h3 class="titulo-centralizado">- P'o -</h3>
+                        <div class="dots" data-max="10"></div>
+                    </div>
+
+                    <div class="bloco-traco-central">
+                        <h3 class="titulo-centralizado">- Chi Demoníaco -</h3>
+                        <div class="squares" data-max="10"></div>
+                    </div>
+                </div>
+
+                <!-- Coluna 3: Vitalidade e Combate -->
+                <div class="coluna">
+                    
+                    <!-- Vitalidade -->
+                    <div class="bloco-vitalidade">
+                        <h3 class="titulo-centralizado">- Vitalidade -</h3>
+                        <div class="linha-vitalidade"><label>Escoriado</label> <span>0</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Machucado</label> <span>-1</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Ferido</label> <span>-1</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Ferido Gravemente</label> <span>-2</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Espancado</label> <span>-2</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Aleijado</label> <span>-5</span> <input type="checkbox"></div>
+                        <div class="linha-vitalidade"><label>Incapacitado</label> <span></span> <input type="checkbox"></div>
+                    </div>
+
+                    <br>
+
+                    <!-- Combate -->
+                    <div class="bloco-combate">
+                        <h3 class="titulo-centralizado">- Combate -</h3>
+                        <div class="cabecalho-combate">
+                            <span>Arma</span> <span>D.f</span> <span>D.n</span>
+                        </div>
+                        <!-- Linhas editáveis para inserir armas -->
+                        <div class="linha-combate">
+                            <input type="text" class="input-arma">
+                            <input type="text" class="input-df">
+                            <input type="text" class="input-dn">
+                        </div>
+                        <div class="linha-combate">
+                            <input type="text" class="input-arma">
+                            <input type="text" class="input-df">
+                            <input type="text" class="input-dn">
+                        </div>
+                        <div class="linha-combate">
+                            <input type="text" class="input-arma">
+                            <input type="text" class="input-df">
+                            <input type="text" class="input-dn">
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
+        </section>
 
-            <div>
-                <label>Comportamento</label>
-                <input type="text" id="comportamento">
+        <!-- VANTAGENS COMPLETAS (Antecedentes, Disciplinas e Virtudes) -->
+        <section class="secao-vantagens">
+            <h2>Vantagens</h2>
+            <!-- Estrutura de 3 colunas ativada -->
+            <div class="grid-3-colunas">
+                
+                <!-- Coluna 1: Antecedentes -->
+                <div class="coluna">
+                    <h3>Antecedentes</h3>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                </div>
+
+                <!-- Coluna 2: Disciplinas -->
+                <div class="coluna">
+                    <h3>Disciplinas</h3>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                    <div class="linha-status"><input type="text" class="input-linha"><div class="dots" data-max="8"></div></div>
+                </div>
+
+                <!-- Coluna 3: Virtudes -->
+                <div class="coluna">
+                    <h3>Virtudes</h3>
+                    <!-- As virtudes em Vampiros do Oriente (Kuei-jin) têm marcações fixas -->
+                    <div class="linha-status-centralizada">
+                        <label>Chi Yin</label>
+                        <div class="dots" data-max="10"></div>
+                        <!-- Na imagem há bolinhas redondas e quadradinhos, 
+                             gerenciaremos os quadrados depois no JavaScript se necessário, 
+                             por enquanto focamos na estrutura principal -->
+                    </div>
+                    <br> <!-- Pula uma linha para separar -->
+                    <div class="linha-status-centralizada">
+                        <label>Chi Yang</label>
+                        <div class="dots" data-max="10"></div>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div>
-                <label>Natureza do P.</label>
-                <input type="text" id="naturezaP">
+        <!-- QUALIDADES E DEFEITOS -->
+        <section class="secao-qualidades-defeitos">
+            <h2>Qualidades / Defeitos</h2>
+            <!-- Criamos uma divisão que o CSS vai transformar em 2 colunas lado a lado -->
+            <div class="grid-2-colunas">
+                
+                <!-- Coluna 1: Qualidades -->
+                <div class="coluna">
+                    <h3>Qualidades</h3>
+                    <!-- 5 Linhas com campos de texto para o jogador digitar -->
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Qualidade 1"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Qualidade 2"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Qualidade 3"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Qualidade 4"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Qualidade 5"></div>
+                </div>
+
+                <!-- Coluna 2: Defeitos -->
+                <div class="coluna">
+                    <h3>Defeitos</h3>
+                    <!-- 5 Linhas com campos de texto para o jogador digitar -->
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Defeito 1"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Defeito 2"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Defeito 3"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Defeito 4"></div>
+                    <div class="linha-status"><input type="text" class="input-linha" placeholder="Defeito 5"></div>
+                </div>
+
             </div>
+        </section>
+        
+        <hr>
+        
+        </div> <div class="controles">
+        <button id="btn-gerar-pdf">Gerar Ficha em PDF</button>
+    </div>
 
-            <div>
-                <label>Equilíbrio</label>
-                <input type="text" id="equilibrio">
-            </div>
-
-            <div>
-                <label>Direção</label>
-                <input type="text" id="direcao">
-            </div>
-
-            <div>
-                <label>Wu</label>
-                <input type="text" id="wu">
-            </div>
-        </div>
-    </section>
-
-    <!-- ATRIBUTOS -->
-    <section>
-        <h2>Atributos</h2>
-
-        <div class="atributos">
-
-            <div>
-                <h3>Físicos</h3>
-
-                <label>Força</label>
-                <input type="number" min="0" max="10">
-
-                <label>Destreza</label>
-                <input type="number" min="0" max="10">
-
-                <label>Vigor</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <h3>Sociais</h3>
-
-                <label>Carisma</label>
-                <input type="number" min="0" max="10">
-
-                <label>Manipulação</label>
-                <input type="number" min="0" max="10">
-
-                <label>Aparência</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <h3>Mentais</h3>
-
-                <label>Percepção</label>
-                <input type="number" min="0" max="10">
-
-                <label>Inteligência</label>
-                <input type="number" min="0" max="10">
-
-                <label>Raciocínio</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-        </div>
-    </section>
-
-    <!-- HABILIDADES -->
-    <section>
-        <h2>Habilidades</h2>
-
-        <div class="atributos">
-
-            <div>
-                <h3>Talentos</h3>
-
-                <label>Prontidão</label><input type="number" min="0" max="10">
-                <label>Esportes</label><input type="number" min="0" max="10">
-                <label>Briga</label><input type="number" min="0" max="10">
-                <label>Esquiva</label><input type="number" min="0" max="10">
-                <label>Empatia</label><input type="number" min="0" max="10">
-                <label>Expressão</label><input type="number" min="0" max="10">
-                <label>Intimidação</label><input type="number" min="0" max="10">
-                <label>Liderança</label><input type="number" min="0" max="10">
-                <label>Manha</label><input type="number" min="0" max="10">
-                <label>Lábia</label><input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <h3>Perícias</h3>
-
-                <label>Empatia com Animais</label><input type="number" min="0" max="10">
-                <label>Ofícios</label><input type="number" min="0" max="10">
-                <label>Condução</label><input type="number" min="0" max="10">
-                <label>Etiqueta</label><input type="number" min="0" max="10">
-                <label>Armas de Fogo</label><input type="number" min="0" max="10">
-                <label>Armas Brancas</label><input type="number" min="0" max="10">
-                <label>Artes Marciais</label><input type="number" min="0" max="10">
-                <label>Segurança</label><input type="number" min="0" max="10">
-                <label>Furtividade</label><input type="number" min="0" max="10">
-                <label>Sobrevivência</label><input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <h3>Conhecimentos</h3>
-
-                <label>Acadêmicos</label><input type="number" min="0" max="10">
-                <label>Computador</label><input type="number" min="0" max="10">
-                <label>Finanças</label><input type="number" min="0" max="10">
-                <label>Investigação</label><input type="number" min="0" max="10">
-                <label>Direito</label><input type="number" min="0" max="10">
-                <label>Linguística</label><input type="number" min="0" max="10">
-                <label>Medicina</label><input type="number" min="0" max="10">
-                <label>Ocultismo</label><input type="number" min="0" max="10">
-                <label>Rituais</label><input type="number" min="0" max="10">
-                <label>Ciências</label><input type="number" min="0" max="10">
-            </div>
-
-        </div>
-    </section>
-
-    <!-- VANTAGENS -->
-    <section>
-        <h2>Vantagens</h2>
-
-        <h3>Antecedentes</h3>
-        <textarea rows="6"></textarea>
-
-        <h3>Disciplinas</h3>
-        <textarea rows="6"></textarea>
-
-        <div class="grid-2">
-
-            <div>
-                <label>Chi Yin</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <label>Chi Yang</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-        </div>
-    </section>
-
-    <!-- DARMA -->
-    <section>
-        <h2>Darma</h2>
-
-        <div class="grid-2">
-
-            <div>
-                <label>Darma</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <label>Força de Vontade</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <label>Hun</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <label>Po</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-            <div>
-                <label>Chi Demoníaco</label>
-                <input type="number" min="0" max="10">
-            </div>
-
-        </div>
-    </section>
-
-    <!-- QUALIDADES -->
-    <section>
-        <h2>Qualidades e Defeitos</h2>
-        <textarea rows="8"></textarea>
-    </section>
-
-    <!-- EQUILIBRIO -->
-    <section>
-        <h2>Equilíbrio</h2>
-        <textarea rows="8"></textarea>
-    </section>
-
-    <!-- RITUAIS -->
-    <section>
-        <h2>Rituais</h2>
-        <textarea rows="8"></textarea>
-    </section>
-
-    <!-- VITALIDADE -->
-    <section>
-        <h2>Vitalidade</h2>
-
-        <label><input type="checkbox"> Escoriado</label>
-        <label><input type="checkbox"> Machucado</label>
-        <label><input type="checkbox"> Ferido</label>
-        <label><input type="checkbox"> Ferido Gravemente</label>
-        <label><input type="checkbox"> Espancado</label>
-        <label><input type="checkbox"> Aleijado</label>
-        <label><input type="checkbox"> Incapacitado</label>
-    </section>
-
-    <!-- COMBATE -->
-    <section>
-        <h2>Combate</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Arma</th>
-                    <th>D.F</th>
-                    <th>D.N</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                </tr>
-
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                </tr>
-
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                </tr>
-
-            </tbody>
-        </table>
-    </section>
-
-    <section class="acoes">
-        <button id="salvarFicha">Salvar Ficha</button>
-        <button id="carregarFicha">Carregar Ficha</button>
-        <button id="exportarPDF">Exportar PDF</button>
-    </section>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

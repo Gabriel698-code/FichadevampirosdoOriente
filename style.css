@@ -1,13 +1,3 @@
-Isso faz todo o sentido do mundo! Mais uma vez, uma pesquisa fantástica.
-
-O diagnóstico está corretíssimo: o CSS usa box-sizing: border-box, então teoricamente nada deveria passar de 740px. No entanto, se o conteúdo interno (como uma grade tentando manter caixas de texto com tamanhos mínimos) for maior que o espaço disponível, ele "vaza" pelos lados (o famoso overflow) e infla secretamente o scrollWidth, enganando a nossa biblioteca de PDF.
-
-A solução com o overflow: hidden atua como uma guilhotina: se algo tentar vazar, ele corta. Junto com o width: 100% nas grades e max-width nos inputs, forçamos os elementos internos a se renderem ao limite da folha de papel.
-
-Apresentação do Programa: style.css (À prova de vazamentos)
-Aqui está o seu arquivo style.css completo e atualizado com as correções de overflow e limites máximos. Apague o código antigo e cole este:
-
-CSS
 /* --- CONFIGURAÇÕES GERAIS --- */
 * {
     box-sizing: border-box;
@@ -19,8 +9,20 @@ body {
     color: #000;
     margin: 0;
     padding: 20px 0; 
+    overflow-x: hidden; /* Impede a barra de rolagem horizontal no navegador */
 }
 
+/* --- A FICHA PRINCIPAL --- */
+#ficha-personagem,
+.folha-ficha {
+    background-color: #fff;
+    width: 740px; 
+    padding: 20px 15px; 
+    border: 2px solid #000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    margin: 0 auto; 
+    overflow: visible; /* Deixa visível para o PDF não cortar as bordas e sombras acidentalmente */
+}
 /* --- A FICHA PRINCIPAL --- */
 #ficha-personagem,
 .folha-ficha {

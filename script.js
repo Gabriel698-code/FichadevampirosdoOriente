@@ -59,28 +59,44 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF ---
+    // --- 4. GERAÇÃO DO PDF (ATUALIZADA COM A SUA SUGESTÃO) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // Removemos qualquer truque de forçar margens para não confundir a câmera
+        // Aplicação das configurações sugeridas
         const opcoes = {
-            margin:       [10, 10, 10, 10], // Margem segura nos 4 cantos
-            filename:     'ficha_vampiro_oriente.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { 
-                scale: 2, 
-                scrollX: 0, 
-                scrollY: 0
-                // APAGAMOS o "windowWidth" que estava causando o corte na esquerda
+            margin: 5,
+            filename: 'ficha_vampiro_oriente.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 1
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
-        }; 
-        
-        // Geração direta sem alterar o estilo da página
-        html2pdf().set(opcoes).from(elementoFicha).save();
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                scrollX: 0,
+                scrollY: 0,
+                // O segredo para não cortar as laterais: lê a largura exata da div
+                windowWidth: elementoFicha.scrollWidth
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            },
+            pagebreak: {
+                // Impede que a biblioteca quebre a ficha em múltiplas páginas
+                mode: ['avoid-all', 'css', 'legacy']
+            }
+        };
+
+        // Executa a conversão
+        html2pdf()
+            .set(opcoes)
+            .from(elementoFicha)
+            .save();
     });
 
 });

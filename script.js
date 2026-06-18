@@ -2,55 +2,39 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // --- 1. LÓGICA DAS BOLINHAS (DOTS) ---
-    // Encontra todos os espaços reservados para bolinhas no HTML
     const conteineresBolinhas = document.querySelectorAll('.dots');
     
     conteineresBolinhas.forEach(conteiner => {
-        // Lê quantas bolinhas aquele atributo precisa (8 ou 10)
         const maximo = parseInt(conteiner.getAttribute('data-max'));
-        
-        // Laço de repetição: Cria a quantidade certa de bolinhas
         for (let i = 0; i < maximo; i++) {
             const bolinha = document.createElement('div');
-            bolinha.classList.add('dot'); // Adiciona o estilo do CSS
-            
-            // Adiciona a inteligência do clique
+            bolinha.classList.add('dot');
             bolinha.addEventListener('click', function() {
                 preencherElementos(conteiner, '.dot', i);
             });
-            
-            // Coloca a bolinha dentro do HTML
             conteiner.appendChild(bolinha);
         }
     });
 
     // --- 2. LÓGICA DOS QUADRADOS (SQUARES) ---
-    // Encontra os espaços reservados para quadrados (Força de Vontade, Chi)
     const conteineresQuadrados = document.querySelectorAll('.squares');
     
     conteineresQuadrados.forEach(conteiner => {
         const maximo = parseInt(conteiner.getAttribute('data-max'));
-        
         for (let i = 0; i < maximo; i++) {
             const quadrado = document.createElement('div');
-            quadrado.classList.add('square'); // Adiciona o estilo do CSS
-            
-            // Adiciona a inteligência do clique
+            quadrado.classList.add('square');
             quadrado.addEventListener('click', function() {
                 preencherElementos(conteiner, '.square', i);
             });
-            
             conteiner.appendChild(quadrado);
         }
     });
 
-    // --- 3. FUNÇÃO DE PREENCHIMENTO (A REGRA DO RPG) ---
+    // --- 3. FUNÇÃO DE PREENCHIMENTO ---
     function preencherElementos(conteiner, classeElemento, indiceClicado) {
-        // Pega todos os itens (bolinhas ou quadrados) daquela linha específica
         const elementos = conteiner.querySelectorAll(classeElemento);
         
-        // Verifica se o item clicado já é o último que estava pintado
-        // Isso serve para o jogador poder "zerar" o atributo se errar
         let clicouNoUltimoPreenchido = true;
         for (let i = 0; i <= indiceClicado; i++) {
             if (!elementos[i].classList.contains('filled')) {
@@ -61,18 +45,16 @@ document.addEventListener("DOMContentLoaded", function() {
             clicouNoUltimoPreenchido = false;
         }
 
-        // Se clicou exatamente no último nível preenchido, limpa tudo
         if (clicouNoUltimoPreenchido) {
             elementos.forEach(el => el.classList.remove('filled'));
-            return; // Interrompe a função aqui
+            return;
         }
 
-        // Caso contrário, preenche até o número clicado e esvazia os da frente
         elementos.forEach((el, i) => {
             if (i <= indiceClicado) {
-                el.classList.add('filled'); // Pinta de preto
+                el.classList.add('filled');
             } else {
-                el.classList.remove('filled'); // Deixa em branco
+                el.classList.remove('filled');
             }
         });
     }
@@ -81,23 +63,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
-        // Seleciona apenas a parte da ficha (ignorando o próprio botão)
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // Configurações visuais do PDF
+        // Ajustes finos: Removemos a trava de janela e adicionamos scrollX e scrollY zerados
         const opcoes = {
-            margin:       [5, 5, 5, 5], 
+            margin:       10, // Margem segura
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
-                scrollY: 0, // Resolve um bug onde a página sai "deslocada"
-                windowWidth: 800 // Trava a largura exatamente no tamanho da ficha no CSS
+                scrollX: 0, 
+                scrollY: 0
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         }; 
         
-        // O comando mágico da biblioteca que faz a conversão e o download
         html2pdf().set(opcoes).from(elementoFicha).save();
     });
 

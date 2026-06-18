@@ -59,26 +59,45 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF ---
+    // --- 4. GERAÇÃO DO PDF (TÉCNICA DO TELETRANSPORTE) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
+        // 1. Salva a posição original da ficha
+        const margemOriginal = elementoFicha.style.margin;
+        const posicaoOriginal = elementoFicha.style.position;
+        const topOriginal = elementoFicha.style.top;
+        const leftOriginal = elementoFicha.style.left;
+
+        // 2. "Teletransporta" a ficha para o ponto 0,0 (canto da tela)
+        elementoFicha.style.margin = '0';
+        elementoFicha.style.position = 'absolute';
+        elementoFicha.style.top = '0';
+        elementoFicha.style.left = '0';
+        
         const opcoes = {
             margin:       [5, 5, 5, 5], 
             filename:     'ficha_vampiro_oriente.pdf',
-            image:        { type: 'jpeg', quality: 1 },
+            image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
                 useCORS: true,
                 scrollX: 0,
-                scrollY: 0
+                scrollY: 0,
+                windowWidth: 750 // 740px da ficha + 10px de margem de erro
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
         
-        html2pdf().set(opcoes).from(elementoFicha).save();
+        // 3. Tira a foto e devolve a ficha para o meio da tela
+        html2pdf().set(opcoes).from(elementoFicha).save().then(function() {
+            elementoFicha.style.margin = margemOriginal;
+            elementoFicha.style.position = posicaoOriginal;
+            elementoFicha.style.top = topOriginal;
+            elementoFicha.style.left = leftOriginal;
+        });
     });
 
 });

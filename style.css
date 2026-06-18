@@ -1,10 +1,3 @@
-Com certeza! Analisei o CSS que você enviou e percebi que faltaram as regras finais da seção de Vantagens e do botão de PDF na hora de copiar, o que pode ter bagunçado a sua página e gerado problemas no PDF.
-
-Além disso, adicionei uma regra de segurança (.html2pdf__page-break) para garantir que aquela quebra de página que colocamos no HTML fique invisível na tela e corte o PDF no lugar exato, resolvendo o problema das páginas em branco ou cortadas.
-
-Pode copiar todo o bloco abaixo e substituir todo o conteúdo do seu arquivo style.css. Ele está limpo, ultra-compacto e pronto para rodar com o seu JavaScript:
-
-CSS
 /* --- CONFIGURAÇÕES GERAIS --- */
 * {
     box-sizing: border-box;

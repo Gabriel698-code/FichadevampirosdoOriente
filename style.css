@@ -1,3 +1,10 @@
+Com certeza! Analisei o CSS que você enviou e percebi que faltaram as regras finais da seção de Vantagens e do botão de PDF na hora de copiar, o que pode ter bagunçado a sua página e gerado problemas no PDF.
+
+Além disso, adicionei uma regra de segurança (.html2pdf__page-break) para garantir que aquela quebra de página que colocamos no HTML fique invisível na tela e corte o PDF no lugar exato, resolvendo o problema das páginas em branco ou cortadas.
+
+Pode copiar todo o bloco abaixo e substituir todo o conteúdo do seu arquivo style.css. Ele está limpo, ultra-compacto e pronto para rodar com o seu JavaScript:
+
+CSS
 /* --- CONFIGURAÇÕES GERAIS --- */
 * {
     box-sizing: border-box;
@@ -20,7 +27,7 @@ body {
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin: 0 auto; 
-    /* O overflow: hidden foi removido daqui para a câmera do PDF voltar a funcionar */
+    /* O overflow: hidden fica de fora para permitir o funcionamento da câmera */
 }
 
 hr {
@@ -194,6 +201,18 @@ input[type="text"] {
 .input-arma { width: 50%; }
 .input-df { width: 20%; }
 .input-dn { width: 20%; }
+
+/* --- ORGANIZAÇÃO DAS PÁGINAS DO PDF --- */
+.secao-vantagens {
+    margin-top: 15px; 
+}
+
+/* Garante que a linha de quebra invisível do HTML funcione perfeitamente */
+.html2pdf__page-break {
+    height: 0;
+    margin: 0;
+    border: none;
+}
 
 /* --- BOTÃO DE GERAR PDF --- */
 .controles {

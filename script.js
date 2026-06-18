@@ -1,3 +1,10 @@
+Com certeza! Eu analisei o seu código e encontrei o pequeno "inseto" (bug) que estava causando problemas.
+
+É um erro de sintaxe super comum na programação: havia um fechamento de chaves e ponto-e-vírgula (};) sobrando logo após as opções do PDF. Isso fazia o JavaScript achar que o comando do botão tinha acabado antes da hora, deixando o comando html2pdf() do lado de fora e gerando um erro.
+
+Aqui está o código corrigido, limpo e pronto para funcionar. Pode copiar e substituir tudo no seu arquivo script.js:
+
+JavaScript
 // Aguarda todo o HTML da página ser carregado antes de rodar o código
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -85,18 +92,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
         // Configurações visuais do PDF
-            const opcoes = {
-                margin:       [5, 5, 5, 5], 
-                filename:     'ficha_vampiro_oriente.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { 
+        const opcoes = {
+            margin:       [5, 5, 5, 5], 
+            filename:     'ficha_vampiro_oriente.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
                 scale: 2, 
                 scrollY: 0, // Resolve um bug onde a página sai "deslocada"
                 windowWidth: 800 // Trava a largura exatamente no tamanho da ficha no CSS
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
-        };
-        };
+        }; // <-- O ERRO ESTAVA AQUI: havia um "};" extra logo abaixo desta linha
         
         // O comando mágico da biblioteca que faz a conversão e o download
         html2pdf().set(opcoes).from(elementoFicha).save();

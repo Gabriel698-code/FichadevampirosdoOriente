@@ -59,49 +59,26 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. GERAÇÃO DO PDF (COM TELETRANSPORTE E QUEBRA DE PÁGINA) ---
+    // --- 4. GERAÇÃO DO PDF (VERSÃO LIMPA E ESTÁVEL) ---
     const botaoGerarPdf = document.getElementById('btn-gerar-pdf');
     
     botaoGerarPdf.addEventListener('click', function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
-        // 1. Salva a posição original da ficha
-        const margemOriginal = elementoFicha.style.margin;
-        const posicaoOriginal = elementoFicha.style.position;
-        const topOriginal = elementoFicha.style.top;
-        const leftOriginal = elementoFicha.style.left;
-
-        // 2. "Teletransporta" a ficha temporariamente para o canto (Evita a tela branca)
-        elementoFicha.style.margin = '0';
-        elementoFicha.style.position = 'absolute';
-        elementoFicha.style.top = '0';
-        elementoFicha.style.left = '0';
-        
+        // Retiramos todos os "truques" e deixamos só o básico que sempre funciona
         const opcoes = {
-            margin:       [5, 5, 5, 5], 
+            margin:       5, 
             filename:     'ficha_vampiro_oriente.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
-                useCORS: true,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: 750 // Trava o enquadramento na medida certa
+                scrollY: 0 // Mantém a câmera no lugar certo
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            // Ativa o leitor daquela <div> mágica que você colocou no HTML
-            pagebreak:    { mode: ['css', 'legacy'] } 
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         };
         
-        // 3. Gera o PDF e devolve a ficha para o meio da tela
-        html2pdf().set(opcoes).from(elementoFicha).save().then(function() {
-            elementoFicha.style.margin = margemOriginal;
-            elementoFicha.style.position = posicaoOriginal;
-            elementoFicha.style.top = topOriginal;
-            elementoFicha.style.left = leftOriginal;
-        });
+        // Geração limpa e direta
+        html2pdf().set(opcoes).from(elementoFicha).save();
     });
 
 });
-
-  

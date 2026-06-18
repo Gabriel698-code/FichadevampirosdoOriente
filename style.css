@@ -1,3 +1,13 @@
+Isso faz todo o sentido do mundo! Mais uma vez, uma pesquisa fantástica.
+
+O diagnóstico está corretíssimo: o CSS usa box-sizing: border-box, então teoricamente nada deveria passar de 740px. No entanto, se o conteúdo interno (como uma grade tentando manter caixas de texto com tamanhos mínimos) for maior que o espaço disponível, ele "vaza" pelos lados (o famoso overflow) e infla secretamente o scrollWidth, enganando a nossa biblioteca de PDF.
+
+A solução com o overflow: hidden atua como uma guilhotina: se algo tentar vazar, ele corta. Junto com o width: 100% nas grades e max-width nos inputs, forçamos os elementos internos a se renderem ao limite da folha de papel.
+
+Apresentação do Programa: style.css (À prova de vazamentos)
+Aqui está o seu arquivo style.css completo e atualizado com as correções de overflow e limites máximos. Apague o código antigo e cole este:
+
+CSS
 /* --- CONFIGURAÇÕES GERAIS --- */
 * {
     box-sizing: border-box;
@@ -12,6 +22,7 @@ body {
 }
 
 /* --- A FICHA PRINCIPAL --- */
+#ficha-personagem,
 .folha-ficha {
     background-color: #fff;
     width: 740px; 
@@ -19,6 +30,7 @@ body {
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin: 0 auto; 
+    overflow: hidden; /* TRAVA FINAL: Se algo tentar vazar da folha, fica invisível e não quebra o PDF */
 }
 
 hr {
@@ -50,16 +62,20 @@ h3 {
 }
 
 /* --- SISTEMA DE COLUNAS (GRID) --- */
+.grid-cabecalho,
+.grid-2-colunas,
+.grid-3-colunas {
+    width: 100%; /* GARANTIA: Nenhuma grade pode ser maior que o próprio papel */
+}
+
 .grid-cabecalho {
     display: grid;
-    /* TRAVA DE SEGURANÇA: minmax(0, 1fr) impede que os itens quebrem a grade */
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
 .grid-3-colunas {
     display: grid;
-    /* TRAVA DE SEGURANÇA: Garante 3 colunas de tamanhos rigorosamente iguais */
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px; 
 }
@@ -85,16 +101,19 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* CORREÇÃO DO ALINHAMENTO (Força de Vontade, Darma, etc.) */
 .bloco-traco-central {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px; /* Isso força um espaço inquebrável entre o título, as bolinhas e os quadrados */
+    gap: 6px; 
     margin-bottom: 15px;
 }
 
 /* --- CAMPOS DE TEXTO (INPUTS) --- */
+input {
+    max-width: 100%; /* GARANTIA: Nenhuma caixa de texto cresce infinitamente */
+}
+
 input[type="text"] {
     border: none;
     border-bottom: 1px solid #000;
@@ -103,7 +122,6 @@ input[type="text"] {
     font-size: 14px;
     outline: none;
     padding: 1px 3px;
-    /* TRAVA DE SEGURANÇA: Impede que a caixa de texto expanda a coluna e jogue as Virtudes para fora */
     min-width: 0; 
 }
 
@@ -120,13 +138,17 @@ input[type="text"] {
 .input-linha {
     flex-grow: 1;
     margin-right: 8px;
-    width: 100%; /* Ajuda o input a respeitar o limite da linha */
+    width: 100%; 
 }
 
 /* --- PREPARAÇÃO PARA O JAVASCRIPT (BOLINHAS E QUADRADOS) --- */
 .dots, .squares {
     display: flex;
     gap: 2px; 
+}
+
+.squares {
+    margin-top: 4px; 
 }
 
 .dot {

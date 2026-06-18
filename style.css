@@ -16,17 +16,17 @@ body {
 .folha-ficha {
     background-color: #fff;
     width: 740px; 
-    padding: 15px 25px; /* Reduzimos o espaço interno nas bordas */
+    padding: 15px 25px; 
     border: 2px solid #000;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin: 0 auto; 
-    overflow: hidden; 
+    /* O overflow: hidden foi removido daqui para a câmera do PDF voltar a funcionar */
 }
 
 hr {
     border: none;
     border-top: 2px solid #000;
-    margin: 8px 0; /* Linhas mais grudadas */
+    margin: 8px 0; 
 }
 
 h1.titulo-jogo {
@@ -41,7 +41,7 @@ h2 {
     letter-spacing: 1px;
     border-bottom: 1px solid #000;
     padding-bottom: 2px;
-    font-size: 16px; /* Letras menores */
+    font-size: 16px; 
     margin: 8px 0;
 }
 
@@ -66,7 +66,7 @@ h3 {
 .grid-cabecalho {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px; /* Mais compacto */
+    gap: 8px; 
 }
 
 .grid-3-colunas {
@@ -86,8 +86,8 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3px; /* Grudando os atributos */
-    font-size: 13px; /* Fonte reduzida */
+    margin-bottom: 3px; 
+    font-size: 13px; 
 }
 
 .linha-status-centralizada {
@@ -149,7 +149,6 @@ input[type="text"] {
     margin-top: 2px; 
 }
 
-/* Bolinhas e Quadrados ligeiramente menores para caberem perfeitos */
 .dot {
     width: 11px; 
     height: 11px; 

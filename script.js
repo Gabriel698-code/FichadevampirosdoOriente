@@ -85,12 +85,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const elementoFicha = document.getElementById('ficha-personagem');
         
         // Configurações visuais do PDF
-        const opcoes = {
-            margin:       [10, 10, 10, 10], // Margens do papel
-            filename:     'ficha_vampiro_oriente.pdf', // Nome do arquivo baixado
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 }, // Melhora a resolução do PDF
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } // Formato A4 padrão
+            const opcoes = {
+                margin:       [5, 5, 5, 5], 
+                filename:     'ficha_vampiro_oriente.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                scale: 2, 
+                scrollY: 0, // Resolve um bug onde a página sai "deslocada"
+                windowWidth: 800 // Trava a largura exatamente no tamanho da ficha no CSS
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+        };
         };
         
         // O comando mágico da biblioteca que faz a conversão e o download
